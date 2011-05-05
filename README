@@ -5,5 +5,5 @@ itunes-web offers you to browse your itunes music library and listen to your tra
 
 Start
 =====
-rake server:start
+rake server
 
