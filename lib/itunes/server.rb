@@ -19,17 +19,12 @@ module Itunes
 
 
     get('/') do
-      "Hello world"
-    end
-
-
-    get('/music') do
       @tracks = Itunes.find(:all)
-      erb :music
+      erb :index
     end
 
 
-    get('/music/:id') do
+    get('/:id') do
       track = Itunes.find(params[:id])
       send_file track.location, :type => File.extname(track.location)[1..-1]
     end

@@ -4,13 +4,13 @@
   <meta charset="utf-8">
   <link rel="stylesheet" href="css/application.css" type="text/css" />
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
-  <title>music</title>
+  <title>itunes-web</title>
   <script type="text/javascript">
      $(function(){
        $("tr:odd").addClass("odd");
 
        $(".track").bind("click", function (){
-         $("#music").attr("src", "music/"+$(this).text());
+         $("#music").attr("src", $(this).text());
        });
 
      });
