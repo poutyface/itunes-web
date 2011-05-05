@@ -1,0 +1,40 @@
+<!Docttype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="css/application.css" type="text/css" />
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
+  <title>music</title>
+  <script type="text/javascript">
+     $(function(){
+       $("tr:odd").addClass("odd");
+
+       $(".track").bind("click", function (){
+         $("#music").attr("src", "music/"+$(this).text());
+       });
+
+     });
+  </script>
+  
+</head>
+<body>
+  <h1>iTunes-web</h1>
+  <br/>
+  <div>
+    <audio id="music" src="" controls autoplay>
+  </div>
+  <div>
+    <table>
+      <% @tracks.each do |track| %>
+      <tr>
+      <td class="track"><a href="#<%= track.id %>"><%= track.id %></a></td>
+      <td><%= track.name %></td> 
+      <td class="artist"><%= track.artist %></td> 
+      <td><%= track.album %></td> 
+      <td><%= track.total_time %></td> 
+      <td><%= track.play_count %></td> 
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</html>

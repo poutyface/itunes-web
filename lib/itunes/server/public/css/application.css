@@ -1,0 +1,6 @@
+
+table{background: #666;}
+tr{background: #fff}
+td{padding: 5px; font-size: 12px}
+td.artist{width: 100px}
+.odd{background: #ddd }
