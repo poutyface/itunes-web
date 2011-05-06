@@ -11,7 +11,7 @@ module Itunes
     set :public, "#{dir}/server/public"
 
     configure do
-      Itunes.prepare
+      Itunes.load(File.expand_path('~/') + '/Music/iTunes/iTunes Music Library.xml')
     end
 
 

@@ -1,10 +1,10 @@
 require 'test_helpers.rb'
 require 'itunes'
 
-Itunes.prepare
 
 class ItunesTest < ActiveSupport::TestCase
   setup do 
+    Itunes.load(File.expand_path('~/') + '/Music/iTunes/iTunes Music Library.xml')
   end
 
   test 'find' do

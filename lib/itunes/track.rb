@@ -1,18 +1,46 @@
 module Itunes
   class Track
-    attr_reader :id
 
-    def initialize(desc={})
-      @id = desc["Track ID"]
-      desc.each do |key, value|
-        key = key.split.map(&:downcase).join('_')
-        instance_variable_set("@#{key}", value)
-        self.class.__send__(:attr_reader, key.to_sym) unless self.class.public_method_defined? key.to_sym     
-      end
+    def initialize(description={})
+      @description = description
     end
 
-    def method_missing(name, *args)
-      ""
+    def [](key)
+      @description[key]
     end
+
+    def id
+      self['Track ID']
+    end
+
+    def name
+      self['Name']
+    end
+
+    def artist
+      self['Artist']
+    end
+
+    def album
+      self['Album']
+    end
+
+    def location
+      value = URI.parse(self['Location']) - "file://localhost"
+      URI.decode_www_form_component(value.to_s)
+    end
+
+    def play_count
+      self['Play Count']
+    end
+
+    def size
+      self['Size']
+    end
+
+    def total_time
+      self['Total Time']
+    end
+
   end
 end
