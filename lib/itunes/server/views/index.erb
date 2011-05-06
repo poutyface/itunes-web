@@ -54,11 +54,14 @@ $(document).ready(function(){
 	Playlist.prototype = {
 		displayPlaylist: function() {
 			var self = this;
-			$(this.cssSelector.playlist + " ul").empty();
+	//		$(this.cssSelector.playlist + " ul").empty();
+			$(this.cssSelector.playlist + " table").empty();
 			for (i=0; i < this.playlist.length; i++) {
-				var listItem = (i === this.playlist.length-1) ? "<li class='jp-playlist-last'>" : "<li>";
-				listItem += "<a href='#' id='" + this.cssId.playlist + this.instance + "_item_" + i +"' tabindex='1'>"+ this.playlist[i].name +"</a>";
+				var listItem = (i === this.playlist.length-1) ? "<tr class='jp-playlist-last'>" : "<tr>";
+				listItem += "<td><a href='#' id='" + this.cssId.playlist + this.instance + "_item_" + i +"' tabindex='1'>"+ this.playlist[i].name+"</a></td>";
+        listItem += "<td width=100px>" + this.playlist[i].artist + "</td><td>" + this.playlist[i].album + "</td>"
 
+/*
 				// Create links to free media
 				if(this.playlist[i].free) {
 					var first = true;
@@ -75,11 +78,12 @@ $(document).ready(function(){
 					});
 					listItem += ")</span>";
 				}
-
-				listItem += "</li>";
+*/
+				listItem += "</tr>";
 
 				// Associate playlist items with their media
-				$(this.cssSelector.playlist + " ul").append(listItem);
+//				$(this.cssSelector.playlist + " ul").append(listItem);
+				$(this.cssSelector.playlist + " table").append(listItem);
 				$(this.cssSelector.playlist + "_item_" + i).data("index", i).click(function() {
 					var index = $(this).data("index");
 					if(self.current !== index) {
@@ -159,6 +163,8 @@ $(document).ready(function(){
     <% @tracks.each do |track| %>
     {
       name:"<%= track.name.gsub(/"/, '') %>",
+      artist:"<%= track.artist.gsub(/"/, '') if track.artist%>",
+      album:"<%= track.album.gsub(/"/, '') if track.album%>",
 			<%= File.extname(track.location)[1..-1] %>:"<%= 'track/' + track.id.to_s %>",
     },
     <% end %>
@@ -184,7 +190,6 @@ $(document).ready(function(){
 
 </head>
 <body>
-  <h1>iTunes-web</h1>
 		<div id="jquery_jplayer_2" class="jp-jplayer"></div>
 
 		<div class="jp-audio">
@@ -211,10 +216,9 @@ $(document).ready(function(){
 					<div class="jp-duration"></div>
 				</div>
 				<div id="jp_playlist_2" class="jp-playlist">
-					<ul>
+          <table>
 						<!-- The method Playlist.displayPlaylist() uses this unordered list -->
-						<li></li>
-					</ul>
+          </table>
 				</div>
 			</div>
 		</div>
