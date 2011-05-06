@@ -7,7 +7,7 @@ module Itunes
       desc.each do |key, value|
         key = key.split.map(&:downcase).join('_')
         instance_variable_set("@#{key}", value)
-        self.class.__send__(:attr_reader, key.to_sym)        
+        self.class.__send__(:attr_reader, key.to_sym) unless self.class.public_method_defined? key.to_sym     
       end
     end
 
