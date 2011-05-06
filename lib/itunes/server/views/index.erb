@@ -10,7 +10,7 @@
        $("tr:odd").addClass("odd");
 
        $(".track").bind("click", function (){
-         $("#music").attr("src", $(this).text());
+         $("#music").attr("src", "track/" + $(this).text());
        });
 
      });

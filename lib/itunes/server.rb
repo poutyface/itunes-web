@@ -2,6 +2,7 @@ require "sinatra/base"
 require "erb"
 require "itunes"
 
+
 module Itunes
   class Server < Sinatra::Base
     dir = File.dirname(File.expand_path(__FILE__))
@@ -24,11 +25,9 @@ module Itunes
     end
 
 
-    get('/:id') do
+    get('/track/:id') do
       track = Itunes.find(params[:id])
-      p track.location
       send_file track.location, :type => File.extname(track.location)[1..-1]
     end
-
   end
 end
