@@ -1,4 +1,5 @@
 require "uri"
+require 'erb'
 require "rexml/document"
 require 'itunes/track'
 
@@ -25,9 +26,9 @@ module Itunes
           value = key.next_element.text
           if key.text == "Location"
             value = URI.parse(key.next_element.text) - "file://localhost"
-            value = URI.decode(value.to_s)
+            value = URI.decode_www_form_component(value.to_s)
           else
-            value = URI.decode(value)
+            value = URI.decode_www_form_component(value)
           end
           dict[id.text.to_i][key.text] = value 
         end
