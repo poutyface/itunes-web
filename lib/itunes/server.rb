@@ -12,6 +12,7 @@ module Itunes
 
     configure do
       Itunes.load(File.expand_path('~/') + '/Music/iTunes/iTunes Music Library.xml')
+      Itunes.tracks # eager load
     end
 
 

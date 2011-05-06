@@ -1,3 +1,5 @@
+require 'uri'
+
 module Itunes
   class Track
 
@@ -26,8 +28,7 @@ module Itunes
     end
 
     def location
-      value = URI.parse(self['Location']) - "file://localhost"
-      URI.decode_www_form_component(value.to_s)
+      URI.decode_www_form_component self['Location'].gsub(/^file:\/\/localhost/, '').to_s
     end
 
     def play_count

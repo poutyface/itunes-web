@@ -1,5 +1,3 @@
-require "uri"
-require 'erb'
 require 'plist'
 require 'itunes/track'
 
