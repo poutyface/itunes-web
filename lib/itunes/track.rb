@@ -27,8 +27,12 @@ module Itunes
       self['Album']
     end
 
-    def location
-      URI.decode_www_form_component self['Location'].gsub(/^file:\/\/localhost/, '').to_s
+    def location(uri=true)
+      unless uri
+        URI.decode_www_form_component self['Location'].sub(/^file:\/\/localhost/, '')
+      else
+        self['Location']
+      end
     end
 
     def play_count
