@@ -1,7 +1,7 @@
 require 'rake/testtask'
 
 task :server do
-  sh 'bin/itunes-web -p 8080 -F'
+  sh 'bin/itunes-web -p 8080 -F -s webrick'
 end
 
 
