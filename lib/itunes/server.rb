@@ -28,7 +28,7 @@ module Itunes
 
     get('/track/:id') do
       track = Itunes.find(params[:id])
-      send_file track.location, :type => File.extname(track.location)[1..-1]
+      send_file track.location, :disposition => 'inline'
     end
   end
 end
